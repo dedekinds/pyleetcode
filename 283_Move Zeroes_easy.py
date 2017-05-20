@@ -126,3 +126,8 @@ print(temp.moveZeroes(nums))
     2.Minimize the total number of operations.
 
 '''
+
+http://blog.csdn.net/coder_orz/article/details/51384498
+其他方法↑
+
+还可以用append()&&remove()就可以了两行，做一个循环即可
