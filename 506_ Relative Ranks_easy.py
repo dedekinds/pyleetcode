@@ -29,7 +29,10 @@ class Solution(object):
         for y in range(len(nums)):
             nums[y]=indexdict[str(nums[y])]
         return nums 
-        
+'''
+nums=[10,3,8,9,4]是分数
+给出同序的排名如[1,5,3,2,4]然后做个替换
+'''     
 
 '''
 The best code
@@ -44,3 +47,11 @@ class Solution(object):
         nl = sorted(nums)[::-1]
         rnk = ["Gold Medal", "Silver Medal", "Bronze Medal"] + map(str, range(4, len(nums)+1))
         return map(dict(zip(nl,rnk)).get, nums)
+
+
+
+
+
+dict = {"a" : "apple", "b" : "banana", "g" : "grape", "o" : "orange"}
+dict["w"] = "watermelon"
+"Gold Medal", "Silver Medal", "Bronze Medal"
