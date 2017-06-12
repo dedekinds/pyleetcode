@@ -1,6 +1,7 @@
 
 
-具体看博客：
+具体看自己的博客：
+http://blog.csdn.net/qq_23997101/article/details/73135615
 
 class Solution(object):
     def smallestGoodBase(self, N):
@@ -12,6 +13,61 @@ class Solution(object):
                 return str(a)
         
         return str(n - 1)
+
+
+
+'''483. Smallest Good Base 
+   2017.6.12
+   牛顿迭代法
+'''
+
+import math
+def functiontemp(a,n,k):
+    return math.log((n*(a-1)+1),a)-1-k
+
+def Dfunctiontemp(a,n):
+    A=n*math.log(a)/(n*(a-1)+1)
+    B=math.log(n*(a-1)+1)/a
+    C=(math.log(a))**2
+    return (A-B)/C
+
+def check(tar,temp):
+    while(int(tar/temp)>=1):
+        if tar%temp!=1:
+            return False
+        else:
+            tar=int(tar/temp)
+    return True
+
+def newton(tar,k):
+    ans=2#初值
+    while(abs(functiontemp(ans,tar,k))>0.001):
+        ans=ans-functiontemp(ans,tar,k)/Dfunctiontemp(ans,tar)
+        #print(ans,k)
+        if ans<2 or ans>tar-1:
+            return -1
+    return int(ans+0.5)
+
+class Solution(object):
+    def smallestGoodBase(self, n):
+        """
+        :type n: str
+        :rtype: str
+        """
+        #1+a+a2+a3+...ak=n
+        #求约数
+        dis=[]
+        #傻逼了，遍历k才是坠吼的
+        n=int(n)
+        for k in range(2,1+int(math.log(n,2))):
+            tar=n
+            temp=newton(tar,k)
+            if temp!=-1 and check(tar,temp):
+                dis.append(temp)
+        if len(dis)==0:
+            return str(n-1)#如果都不是，肯定是n-1            
+        return str(min(dis))
+
 
 '''483. Smallest Good Base 
    2017.6.12
