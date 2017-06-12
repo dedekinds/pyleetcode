@@ -1,5 +1,18 @@
 
 
+具体看博客：
+
+class Solution(object):
+    def smallestGoodBase(self, N):
+        n = int(N);
+        
+        for k in xrange(int(math.log(n, 2)), 1 , -1):
+            a = int(n ** k ** -1)                  # kth-root of n
+            if (1 - a ** (k + 1)) // (1 - a) == n: # [a^0 + a^1 + ... + a^k] == n
+                return str(a)
+        
+        return str(n - 1)
+
 '''483. Smallest Good Base 
    2017.6.12
    较大的数用对数，较小的数用指数也不行卧槽
@@ -80,7 +93,7 @@ class Solution(object):
             return str(n-1)#如果都不是，肯定是n-1            
         return str(min(dis))
 
-        
+
 '''483. Smallest Good Base 
    2017.6.12
    对数形式也是不行的，由于对数将误差减少了，eps很难满足要求总是有可恶的样例
