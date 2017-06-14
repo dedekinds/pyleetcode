@@ -1,16 +1,15 @@
 '''137. Single Number II 
    2017.6.14
 '''
+class Solution(object):
+    def singleNumber(self, nums):
+        a = b = 0
+        for n in nums:
+            b = (b^n)&~a
+            a = (a^n)&~b
+        return b
 
-
-
-
-
-
-
-
-
-
+如果不是3个数而是两个数的话，利用异或的可交换性可以直接不断异或得到
 
 对于统计1~N的那种统计正整数来说：
 class Solution(object):
