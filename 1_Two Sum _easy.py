@@ -3,6 +3,57 @@
    169ms
 '''
 
+def findvalue(nums,target):#用双指针夹逼法获得我们要的数值
+    temp=sorted(nums)
+    left=0
+    right=len(nums)-1
+    while left<right:
+        if temp[left]+temp[right]==target:
+            return [temp[left],temp[right]]
+        if temp[left]+temp[right]>target:
+            right-=1
+        if temp[left]+temp[right]<target:
+            left+=1
+class Solution(object):
+    def twoSum(self, nums, target):#从左到右遍历一次，一共是O(n)
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        ans=[]
+        a,b=findvalue(nums,target)
+        for x in range(len(nums)):
+            if nums[x]==a:
+                ans.append(x)
+                nums[x]='temp'
+            if nums[x]==b:
+                ans.append(x)
+                nums[x]='temp'
+        return ans
+
+
+
+
+——————————best 方法————————————
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        n = len(nums)#哈希大法
+        diff_dict ={}
+        i = 0
+        while i < n:
+            if nums[i] not in diff_dict:
+                diff_dict[target - nums[i]] = i #有点很巧妙
+                i+=1
+            else:
+                return diff_dict[nums[i]], i
+
+
 ——————————错误的方法————————————
 def binsearch(nums,target):
     if nums[0]==target:
