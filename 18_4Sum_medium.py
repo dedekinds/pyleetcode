@@ -1,9 +1,7 @@
 '''18. 4Sum 
    2017.6.23
-   169ms
+   1139ms
 '''
-
-
 #只是在#*******处做了个改动，先把Sum计算出来，不要每次都要算一次和
 class Solution(object):
     def fourSum(self, nums, target):
