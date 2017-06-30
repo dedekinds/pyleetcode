@@ -2,13 +2,22 @@
    2017.6.30
 
 '''
+见博客
+
 class Solution(object):
     def coinChange(self, coins, amount):
-        """
-        :type coins: List[int]
-        :type amount: int
-        :rtype: int
-        """
+        dp=[233333333]*(amount+1)
+        dp[0]=0
+        for c in coins:
+            for i in range(c,len(dp)):
+                dp[i]=min(dp[i],dp[i-c]+1)
+        if dp[-1]==233333333:
+            return -1
+        return dp[-1]
+
+________TLE_____________
+class Solution(object):
+    def coinChange(self, coins, amount):
         temp=233333333333333333333
         dp=[[0]*(len(coins)+1) for x in range(amount+1)]
         for x in range(amount+1):
