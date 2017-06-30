@@ -33,3 +33,54 @@ class Solution(object):
         if dp[-1][-1]==temp:
             return -1
         return dp[-1][-1]
+
+
+——————————————
+BFS：https://discuss.leetcode.com/topic/32589/fast-python-bfs-solution
+DFS：https://discuss.leetcode.com/topic/36306/python-11-line-280ms-dfs-with-early-termination-99-up
+
+
+
+import sys
+
+class Solution(object):
+    def coinChange(self, coins, amount):
+        """
+        :type coins: List[int]
+        :type amount: int
+        :rtype: int
+        """
+        # dp = [(amount+1) for i in xrange(amount+1)]
+        # dp[0] = 0
+        # for am in xrange(amount+1):
+        #     for j, coin in enumerate(coins):
+        #         if coin <= am:
+        #             dp[am] = min(1+dp[am-coin], dp[am])
+        # return dp[amount] if dp[amount] != amount+1 else -1
+########################################
+        if amount == 0:
+            return 0
+        if not coins:
+            return -1
+        coins.sort(reverse = True)
+        maxc = amount//coins[-1] + (amount%coins[-1]==0) # 1+maximum possible
+        self.ans = maxc
+
+        def dfs(i, ncoin, target):
+            while i < len(coins) and coins[i] > target:
+                i += 1
+            if i == len(coins):
+                return
+            minc = (target//coins[i]) + (target%coins[i] != 0) # min possible
+
+            if minc + ncoin >= self.ans: # no need to go further
+                return
+            if target%coins[i] == 0: # can use this only
+                self.ans = minc + ncoin
+            else:
+                dfs(i, ncoin+1, target-coins[i])
+                dfs(i+1, ncoin, target)
+            return
+
+        dfs(0, 0, amount)
+        return self.ans if self.ans != maxc else -1
