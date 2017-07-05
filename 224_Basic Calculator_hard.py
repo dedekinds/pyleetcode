@@ -2,6 +2,7 @@
    2017.7.4
 
 '''
+#见邓数据结构的视频
 class Stack(object): 
     def __init__(self): #建立栈
         self.items = [] 
@@ -52,7 +53,7 @@ class Solution(object):
         judge=[['>','>','<','<','<'],  #+  0
                ['>','>','<','<','<'],  #-  1
                ['>','>','>','>','<'],  #*  2
-               ['>','>','<','<','<'],  #/  3
+               ['>','>','>','>','<'],  #/  3
                ['<','<','<','<','<'],] #(  4、
 
         #初始化
@@ -62,6 +63,7 @@ class Solution(object):
         s=s+')'
         x=0
         while x<len(s):
+            #print(s_num.stackprint(),s_char.stackprint())
             if s[x]==' ':
                 x+=1
                 continue
@@ -101,15 +103,7 @@ class Solution(object):
                     cal1=s_num.pop()
                     calchar=s_char.pop()#之前也许也有优先的字符
                     s_num.push(charcheck(cal1,calchar,cal2))
+                    s_char.push(s[x])
                     x+=1
                     continue
         return s_num.pop()  
-
-                    
-                           
-s=" 3+5 / 2 "
-temp=Solution()
-print(temp.calculate(s))
-
-
-
