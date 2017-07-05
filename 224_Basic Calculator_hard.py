@@ -107,3 +107,42 @@ class Solution(object):
                     x+=1
                     continue
         return s_num.pop()  
+
+
+        ————————————————best code____________
+        class Solution(object):
+    def calculate(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        stack = []
+        sum_ = 0
+        sign = 1
+        num = 0
+
+        for ch in s:
+            if ch.isdigit():
+                num = num * 10 + ord(ch) - 48
+            elif ch == '+':
+                sum_ += sign * num
+                num = 0
+                sign = 1
+            elif ch == '-':
+                sum_ += sign * num
+                num = 0
+                sign = -1
+            elif ch == '(':
+                stack.append(sum_)
+                stack.append(sign)
+                sum_ = 0
+                sign = 1
+            elif ch == ')':
+                num = sum_ + sign * num
+                sign = stack.pop()
+                sum_ = stack.pop()
+
+        sum_ += sign * num
+
+        return sum_
+        
