@@ -15,17 +15,21 @@ class Solution(object):
         :type head: ListNode
         :rtype: ListNode
         """
+        #用归并排序的办法(链表版)
         if head is None or head.next is None:
             return head
         mid=self.getmidpointer(head)
         lhead=head
         rhead=mid.next
-        mid.next=None#之前缺少这句一直RE，超出递归深度
+        mid.next=None#之前缺少这句一直RE，超出递归深度?
+        #因为如果没有这句的话，lhead=head在到达mid的时候还会继续下去，
+        #以[2,2,1,5,6]为例，要使得在merge中ok，且head~=[2,2,1]的话必须在
+        #mid.next赋值忘后设为None
         return self.merge(self.sortList(lhead),self.sortList(rhead))
 
 
 
-    def getmidpointer(self,head):
+    def getmidpointer(self,head):#用开满指针，由追及问题的解知道mid在中间
         if head is None:
             return head
         fast=head
