@@ -35,4 +35,23 @@ class Solution(object):
 
             
         
-        
+一种递归的办法
+class Solution(object):
+    def sumOfLeftLeaves(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        ans = 0
+        if root: 
+            l, r = root.left, root.right
+            if l and (l.left or l.right) is None:
+            	'''
+            	>>> (None or None)is None  都是None的时候才发动
+                True
+                >>> (None or not None)is None
+                False
+            	'''
+                ans += l.val
+            ans += self.sumOfLeftLeaves(l) + self.sumOfLeftLeaves(r)
+        return ans
