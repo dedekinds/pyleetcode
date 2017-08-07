@@ -1,7 +1,54 @@
 '''101. Symmetric Tree  
    2017.8.7
 '''
+用层次遍历，小心null的情况，实际上不需要像中间做法那样每次新建一个树
+这是因为只要一旦有一个不对称就可以返回False了
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+def height(tree):
+    if tree is None:
+        return 0
+    return max(height(tree.left),height(tree.right))+1
 
+class Solution(object):
+    def isSymmetric(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        if root is None:
+            return True
+        treeheight=height(root)
+        Q=[root]
+        hei=0
+        while hei<=treeheight:
+            hei+=1
+            tempQ=[]
+            templist=[]
+            for x in Q:
+                if x.left:
+                    tempQ.append(x.left)
+                    templist.append(x.left.val)
+                elif x.left is None:
+                    templist.append('a')#对比上一个方法改了这里
+                    
+                if x.right:
+                    tempQ.append(x.right)
+                    templist.append(x.right.val)
+                elif x.right is None:
+                    templist.append('a')
+                    
+            Q=tempQ
+            if templist!=templist[::-1]:
+                return False
+        return True
+                
+
+ 
 
 ————————————————————————
 TLE
