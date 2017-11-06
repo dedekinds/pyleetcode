@@ -2,6 +2,7 @@
 46. Permutations 
 2017.11.6
 '''
+____________________________________________________________
 #阶乘数→逆序数→排列数
 #http://www.cnblogs.com/wanxiao/p/3607225.html
 import math
@@ -45,10 +46,23 @@ class Solution(object):
             times+=1
         return ans
 
+_________________暴力递归________________________________________
+class Solution(object):   
+    def permute(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        if len(nums)==1:
+            return [nums]
+        ans=[]
+        for i in range(len(nums)):
+            temp_ans=[[nums[i]] + temp for temp in self.permute(nums[:i]+nums[i+1:])]
+            ans=ans+temp_ans
+        return ans
 
+______best code____________________________________________
 
-
-______best code_________
 class Solution(object):
     def permute(self, nums):
         """
