@@ -3,6 +3,58 @@
 2017.11.6
 '''
 
+Steinhaus–Johnson–Trotter算法
+
+设[a1,a2 ... aN] 每一项都有向左或向右两个移动方向。
+1) 初始化所有移动方向向左；
+2) 如果移动方向的值比自己小，就可移动，比如 <1 >2 <3, 每个数字前箭头的方向表示该数字的移动方向，3可以移动，2和1不可移动；
+3) 移动最大的可以动项，在上面例子中就是数字3；
+4) 将所有比移动项大的项方向反转，重复第三步，直到不能移动为止。
+
+import math
+#Steinhaus–Johnson–Trotter algorithm
+def find_legal_move_loacation(direction,nums):#找到最大的可移动的数的位置
+    maxlocation=-10086
+    maxnum=-10086
+    for x in range(len(nums)):
+        if x+direction[x]>-1 and x+direction[x]<len(nums):#合法位置
+            if nums[x]>nums[x+direction[x]] and nums[x]>=maxnum:
+                maxlocation=x
+                maxnum=nums[x]
+    return maxlocation
+
+class Solution(object):   
+    def permute(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        direction=[-1]*len(nums)
+        nums=sorted(nums)#必须从最小字典序开始
+        t=1
+        ans=[]
+        while t<=math.factorial(len(nums)):
+            #print(direction)
+            ans.append(nums[:])
+            location=find_legal_move_loacation(direction,nums)
+            if location==-10086:
+                break
+        #swap 数值
+            temp=nums[location]
+            nums[location]=nums[location+direction[location]]
+            nums[location+direction[location]]=temp
+        #swap 方向
+            temp_location=location+direction[location]
+            a=direction[temp_location]
+            direction[temp_location]=direction[location]
+            direction[location]=a
+
+        #更新方向
+            for x in range(len(nums)):
+                if nums[x]>temp:
+                    direction[x]*=-1
+            t+=1
+        return ans
 ——————————————————————————————————————————
 字典序法（缺点是必须从最小字典序开始迭代）
 http://www.cnblogs.com/pmars/p/3458289.html
