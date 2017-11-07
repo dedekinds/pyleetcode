@@ -3,6 +3,62 @@
 2017.11.6
 '''
 
+【递减进位法】
+和递增进位法相比product_permutation相同，但是生成的下一个阶乘数有点不同
+0000    abcd    1000    bacd    2000    cabd    3000    dabc
+0010    abdc    1010    badc    2010    cadb    3010    dacb
+0100    acbd    1100    bcad    2100    cbad    3100    dbac
+0110    acdb    1110    bcda    2110    cbda    3110    dbca
+0200    adbc    1200    bdac    2200    cdab    3200    dcab
+0210    adcb    1210    bdca    2210    cdba    3210    dcba
+
+以上表为例，递增进位是上往下生成 0000→0010....
+递减是 0000→1000→2000...
+import math
+#逆序数→排列数
+def product_permutation(Factorialnum,nums):
+    for i in range(len(nums)-1):
+        if Factorialnum[i]==0:
+            i+=1
+        else:
+            t=nums[i+Factorialnum[i]]
+            nums=nums[:i]+[t]+nums[i:i+Factorialnum[i]]+nums[1+i+Factorialnum[i]:]
+            i+=1
+    return nums
+                
+#生成下一个阶乘数（逆序数）
+def plus_one(Factorialnum):
+    length=len(Factorialnum)
+    n=0
+    #【*】
+    while n<length:
+        if Factorialnum[n]+1<length-n:#【*】
+            Factorialnum[n]+=1
+            break
+        else:
+            Factorialnum[n]=0
+            n+=1  
+    return Factorialnum#【*】
+    
+class Solution(object):   
+    def permute(self, nums):
+        Factorialnum=[0]*len(nums)
+        ans=[]
+        Factorialnum=plus_one(Factorialnum)
+        
+        times=1
+        total=math.factorial(len(nums))#循环n!次
+        while times<=total:
+            ans.append(product_permutation(Factorialnum,nums))
+            Factorialnum=plus_one(Factorialnum)
+            #print(Factorialnum,product_permutation(Factorialnum,nums))
+            times+=1
+        return ans
+
+
+
+
+——————————————————————————————————————————————————————————————————
 Steinhaus–Johnson–Trotter算法
 
 设[a1,a2 ... aN] 每一项都有向左或向右两个移动方向。
@@ -115,7 +171,7 @@ class Solution(object):
 
 
 _____________________________________________________
-#阶乘数→逆序数→排列数
+#阶乘数→逆序数→排列数【递增进位法】
 #http://www.cnblogs.com/wanxiao/p/3607225.html
 import math
 #逆序数→排列数
