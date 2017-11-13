@@ -2,7 +2,7 @@
 598. Range Addition II 
 2017.11.13
 '''
-
+实际上和m*n几乎没关，完全是找ops第一项和第二项中的最小值的乘积（overlap
 class Solution:
     def maxCount(self, m, n, ops):
         """
