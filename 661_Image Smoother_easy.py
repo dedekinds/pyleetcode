@@ -2,6 +2,24 @@
 661. Image Smoother 
 2017.11.22
 '''
+漂亮的写法
+class Solution(object):
+    def imageSmoother(self, M):
+        """
+        :type M: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        dx, dy = [-1, 0, 1], [-1, 0, 1]
+        w, h = len(M), len(M[0])
+        N = []
+        for x in range(w):
+            row = []
+            for y in range(h):
+                nbs = [M[x + i][y + j] for i in dx for j in dy if 0 <= x + i < w and 0 <= y + j < h]
+                row.append(int(sum(nbs) / len(nbs)))
+            N.append(row)
+        return N
+______________________________________________
 暴力模拟九宫格模板（速度略慢
 def check_legal_location(M,i,j):
     n=len(M)
