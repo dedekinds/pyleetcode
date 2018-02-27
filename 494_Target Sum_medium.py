@@ -11,6 +11,7 @@ class Solution:
         """
         请合"416. Partition Equal Subset Sum"来看
         这里的dp表示的是第i轮时候和为j的组合数
+        http://blog.csdn.net/xiaoxiaoley/article/details/78968852
         
         target=S+sum(nums)
         if sum(nums)<S or target%2==1:return 0
