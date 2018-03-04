@@ -24,4 +24,21 @@ class Solution(object):
             else:
                 ans.append(temp_ans)
         return ans[::-1]
-                    
+    
+    
+_________________________________________
+单调栈：https://zhuanlan.zhihu.com/p/26465701
+class Solution:
+    def dailyTemperatures(self, temperatures):
+        """
+        :type temperatures: List[int]
+        :rtype: List[int]
+        """
+        stack=[]
+        result=[0]*len(temperatures)
+        for i in range(len(temperatures)):
+            while stack and temperatures[stack[-1]]<temperatures[i]:
+                result[stack[-1]]=i-stack[-1]
+                stack.pop()
+            stack.append(i)
+        return result         
