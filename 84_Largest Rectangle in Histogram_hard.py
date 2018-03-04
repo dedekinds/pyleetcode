@@ -34,6 +34,7 @@ class Solution:
 非常迷的单调栈方法，
 1.http://chuansong.me/n/390896436960:最后一幅图的棕色圈有问题似乎
 2.http://blog.csdn.net/yutianzuijin/article/details/52072427
+3.https://zhuanlan.zhihu.com/p/26465701
 
 def largestRectangleArea(self, height):
     height.append(0)
