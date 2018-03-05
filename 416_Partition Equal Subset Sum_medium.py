@@ -1,3 +1,6 @@
+其实这就是coin change问题啊！
+http://blog.csdn.net/qq_23997101/article/details/74009845
+——————————————————————————————————————
 '''
 416. Partition Equal Subset Sum
 2018.2.27
