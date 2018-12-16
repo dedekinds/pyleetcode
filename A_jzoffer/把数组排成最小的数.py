@@ -15,3 +15,17 @@ class Solution:
 !!!!!!!!!!!!!!!!!!!!!!
 python3中的写法
 !!!!!!!!!!!!!!!!!!!!!!
+
+import functools
+def cmp(s1,s2):
+    a = str(s1)
+    b = str(s2)
+    if int(a+b) < int(b+a):
+        return -1
+    if int(a+b) < int(b+a):
+        return 1
+    return 0
+
+array = sorted(numbers,key = functools.cmp_to_key(cmp))
+return ''.join([str(i) for i in array])
+
