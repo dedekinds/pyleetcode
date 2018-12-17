@@ -38,7 +38,8 @@ class Solution:
 
 
 ————————————————————————————————————————————
-另一种思路
+另一种思路，和上面的思路相似，不过更加精确而已，最大的那个数newugly（每次生成的最小的那个数，也为新的ugly
+这个数的t12 t3 t5可以精确找出
 class Solution:
     def GetUglyNumber_Solution(self, index):
         if (index <= 0):
