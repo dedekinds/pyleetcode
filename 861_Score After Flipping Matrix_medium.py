@@ -51,3 +51,5 @@ class Solution:
             if not self.get_col(A,j):
                 self.change_col(A,j)
         return self.count_matrix(A)
+
+
