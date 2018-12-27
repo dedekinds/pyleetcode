@@ -19,6 +19,7 @@ class Solution:
         else:return -1
 
 __________________________________________________________
+Dijkstra algorithm  Basic Implementation
 class Solution:
     def networkDelayTime(self, times, N, K):
         #Dijkstra's algorithm  Basic Implementation
@@ -46,6 +47,8 @@ class Solution:
         
         return max(d)
 ______________________________________________
+Dijkstra algorithm  heap
+
 import heapq
 class Solution:
     def networkDelayTime(self, times, N, K):
@@ -78,5 +81,34 @@ class Solution:
                 
                 
                 
-                
+
+——————————————————————————————————————————————
+SPFA
+
+class Solution:
+    def networkDelayTime(self, times, N, K):
+        """
+        :type times: List[List[int]]
+        :type N: int
+        :type K: int
+        :rtype: int
+        """
+        #SPFA
+    
+        graph = collections.defaultdict(list)
+        for u, v, w in times:
+            graph[u].append((v, w))
             
+        d = [float('inf')] * N
+        d[K-1] = 0
+        Q = [K]
+        while Q:
+            u = Q.pop(0)
+            for v,w in graph[u]:
+                if d[v-1] > d[u-1] + w:
+                    d[v-1] = d[u-1] + w
+                    if v not in Q:
+                        Q.append(v)
+        if sum(d) < float('inf'):return max(d)
+        else:return -1
+                
