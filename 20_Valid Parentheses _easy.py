@@ -50,3 +50,30 @@ print(temp.isValid(s))
 
 
 
+__________________________________________________
+20190115
+class Solution:
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        if len(s) == 0:return True
+        #if len(s) == 1:return False
+        stack = []
+        left = ['(','[','{']
+
+        for i in range(len(s)):
+            if not stack or s[i] in left:
+                stack.append(s[i])
+                continue
+            top = stack[-1]
+            p1 = top == '(' and s[i] == ')'
+            p2 = top == '[' and s[i] == ']'
+            p3 = top == '{' and s[i] == '}'
+            if p1 or p2 or p3:
+                stack.pop()
+            else:
+                return False
+        if not stack:return True
+        return False
