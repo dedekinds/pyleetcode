@@ -1,3 +1,18 @@
+class Solution:
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        idx = dict()
+        for index,num in enumerate(nums):
+            if target - num in idx:
+                return [idx[target-num],index]
+            idx[num] = index
+————————————————————————————————————————————————————————————
+
+
 '''1. Two Sum 
    2017.6.22
    169ms
