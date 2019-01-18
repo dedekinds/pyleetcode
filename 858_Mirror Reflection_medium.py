@@ -1,5 +1,5 @@
 见稍后知乎分析
-
+向上不断翻折，注意上方两个顶点的交替变化
 class Solution(object):
     def gcd(self,a,b):
         if b==0:return a
