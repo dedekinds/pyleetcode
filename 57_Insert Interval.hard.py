@@ -26,3 +26,6 @@ class Solution(object):
         ans.append(Interval(start,end))
         return ans
 套入56.merge interval 问题即可
+
+___________________________________________
+看清题目，这个数组已经是排序过的了
