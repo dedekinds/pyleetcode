@@ -1,3 +1,23 @@
+2019.1.20更新
+class Solution(object):
+    def permute(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        def dfs(begin):
+            if begin == length:
+                ans.append(nums[:])
+            for i in range(begin,length):
+                nums[begin],nums[i] = nums[i],nums[begin]
+                dfs(begin+1)
+                nums[begin],nums[i] = nums[i],nums[begin]
+        
+        ans = []
+        length = len(nums)
+        dfs(0)
+        return ans
+_________________________________________________
 '''
 46. Permutations 
 2017.11.6
