@@ -29,3 +29,25 @@ class Solution:
             if ps==pt:return [s,t]
             parent[ps]=pt
             
+————————————————————————————————————————————————————————————————————————
+
+压缩路径 递归式 并查集
+class Solution(object):
+    def findRedundantConnection(self, edges):
+        """
+        :type edges: List[List[int]]
+        :rtype: List[int]
+        """
+        parent = (1+max(sum(edges,[])))*[-1]
+        
+        def find_root(x):
+            if parent[x] == -1:return x
+            parent[x] = find_root(parent[x])
+            return parent[x]
+        
+        for u,v in edges:
+            pu , pv = find_root(u),find_root(v)
+            if pu == pv:return [u,v]
+            parent[pu] = pv
+        
+        
