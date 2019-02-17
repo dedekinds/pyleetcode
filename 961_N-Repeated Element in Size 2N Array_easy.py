@@ -30,3 +30,16 @@ class Solution(object):
         for temp in range(len(A)):
             if A[temp - 1] == A[temp] or A[temp - 2] == A[temp]:
                 return A[temp]
+——————————————————————————————————————————————————————————————
+class Solution(object):
+    def repeatedNTimes(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        while 1:
+            temp = random.sample(A,2)
+            if temp[0] == temp[1]:
+                return temp[0]
+
+    每次抽中一样的概率是25%左右，大约O(4)即可

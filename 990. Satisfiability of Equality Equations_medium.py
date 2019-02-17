@@ -38,4 +38,25 @@ class Solution(object):
                 if self.dfs(u,v,adj):
                     return False
         return True
-            
+            ——————————————————————————————————————————————————————————————————
+并查集方法
+class Solution(object):
+    def equationsPossible(self, equations):
+        """
+        :type equations: List[str]
+        :rtype: bool
+        """
+        def find_root(x):
+            if parent[x] != x:
+                parent[x] = find_root(parent[x])
+            return parent[x]
+        parent = {char: char for char in string.ascii_lowercase}
+        
+        for a,b,c,d in equations:
+            if b == '=':
+                parent[find_root(a)] = parent[find_root(d)]
+        for a,b,c,d in equations:
+            if b == '!':
+                if find_root(a) == find_root(d):
+                    return False
+        return True
