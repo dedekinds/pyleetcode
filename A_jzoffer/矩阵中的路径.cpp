@@ -32,3 +32,38 @@ public:
  
  
 };
+
+——————————————————————————————————————————————————————————————————————————————
+class Solution(object):
+    def dfs(self,matrix,string,index,x,y):
+        rows = len(matrix)
+        cols = len(matrix[0])
+        if matrix[x][y] != string[index]:return False
+        if index == len(string)-1:return True
+        dx = [-1,1,0,0]
+        dy = [0,0,-1,1]
+        temp = matrix[x][y]
+        matrix[x][y] = '*'
+        for i in range(len(dx)):
+            m = x + dx[i]
+            n = y + dy[i]
+            if m >=0 and m < rows and n >=0 and n < cols:
+                if self.dfs(matrix,string,index+1,m,n):return True
+        matrix[x][y] = temp
+        return False
+        
+        
+    def hasPath(self, matrix, string):
+        """
+        :type matrix: List[List[str]]
+        :type string: str
+        :rtype: bool
+        """
+        rows = len(matrix)
+        if rows == 0 :return False
+        cols = len(matrix[0])
+        for i in range(rows):
+            for j in range(cols):
+                if self.dfs(matrix,string,0,i,j):
+                    return True
+        return False;
