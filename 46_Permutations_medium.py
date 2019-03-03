@@ -17,6 +17,30 @@ class Solution(object):
         length = len(nums)
         dfs(0)
         return ans
+
+_________________________________________________
+class Solution:
+    def searchpermutation(self,nums,res,index):
+        if index == len(nums):
+            if nums not in res:
+                res.append(nums[:])######!!!!!!!!!!加nums[:]
+                
+        for i in range(index,len(nums)):
+            temp = nums[index]
+            nums[index] = nums[i]
+            nums[i] = temp
+            
+            self.searchpermutation(nums,res,index+1)
+            
+            temp = nums[index]
+            nums[index] =nums[i]
+            nums[i] = temp 
+    
+    def permutation(self, nums):
+        res = []
+        if len(nums) == 0:return res
+        self.searchpermutation(nums,res,0)
+        return res
 _________________________________________________
 '''
 46. Permutations 
