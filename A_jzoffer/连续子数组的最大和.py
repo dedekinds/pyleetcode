@@ -19,3 +19,24 @@ class Solution:
                 acc_sum = 0
         return opt
         
+
+        ————————————————————————————————————————————————
+class Solution(object):
+    def maxSubArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if len(nums)==0:return 0
+        if len(nums)==1:return nums[0]
+        curr_max = 0
+        opt = -0xfffffff
+        for i in range(len(nums)):
+            if curr_max <=0:curr_max = nums[i]
+            else:curr_max += nums[i]
+            
+            if opt < curr_max:
+                opt = curr_max
+
+            
+        return opt
