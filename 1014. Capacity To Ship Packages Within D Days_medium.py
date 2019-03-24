@@ -1,3 +1,6 @@
+
+最小的最大重量肯定在 max(weights)和 sum(weights)之间，对它进行二分
+
 class Solution(object):
     def check(self,weights,limit):
         nums = 0
