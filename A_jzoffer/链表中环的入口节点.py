@@ -1,6 +1,6 @@
 
 先快慢指针得到一个交点，这说明成环了
-再在这个地方和初始的位置，都放快指针，这样相遇的地方就是环的起始位置
+再在这个地方和初始的位置，都放慢指针，这样相遇的地方就是环的起始位置
 
 # -*- coding:utf-8 -*-
 # class ListNode:
@@ -24,7 +24,7 @@ class Solution:
         if not check:
             return None
         while fast != pHead:
-            fast = fast.next.next
-            pHead = pHead.next.next
+            fast = fast.next
+            pHead = pHead.next
         return pHead
         
